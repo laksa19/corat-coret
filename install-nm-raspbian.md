@@ -1,4 +1,4 @@
-#### Install Network Managet Raspbian Raspberry Pi
+#### Install Network Manager Raspbian Raspberry Pi
 
 
 sudo apt update
