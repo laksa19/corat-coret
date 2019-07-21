@@ -11,7 +11,7 @@ sudo nano /etc/network/interfaces
 auto lo 
 iface lo inet loopback
 ```
-CTRL+x -> y -> Enter
+save config : CTRL+x -> y -> Enter
 
 
 sudo apt install network-manager network-manager-gnome
