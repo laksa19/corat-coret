@@ -8,10 +8,10 @@
 
 ``` wget -O /usr/bin/badvpn-udpgw https://raw.githubusercontent.com/laksa19/corat-coret/master/udpgw/badvpn-udpgw64 && sudo chmod +x /usr/bin/badvpn-udpgw```
 
-## edit rc.local
+## edit cron job
 
 ```bash
-sudo nano /etc/rc.local
+sudo crontab -e
 
-screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
+@reboot screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
 ```
