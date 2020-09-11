@@ -2,11 +2,11 @@
 
 ## linux 32
 
-```wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/laksa19/corat-coret/master/udpgw/badvpn-udpgw && sudo chmod +x /usr/bin/badvpn-udpgw"```
+```wget -O /usr/bin/badvpn-udpgw https://raw.githubusercontent.com/laksa19/corat-coret/master/udpgw/badvpn-udpgw && sudo chmod +x /usr/bin/badvpn-udpgw```
 
 ## linux 64
 
-``` wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/laksa19/corat-coret/master/udpgw/badvpn-udpgw64 && sudo chmod +x /usr/bin/badvpn-udpgw"```
+``` wget -O /usr/bin/badvpn-udpgw https://raw.githubusercontent.com/laksa19/corat-coret/master/udpgw/badvpn-udpgw64 && sudo chmod +x /usr/bin/badvpn-udpgw```
 
 ## edit rc.local
 
