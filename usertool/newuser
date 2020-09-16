@@ -1,0 +1,38 @@
+#!/bin/bash
+clear
+ip=$(ip addr | grep -A 1 "eth0" | awk '/inet/{split($2,ip,"/"); print ip[1]}')
+echo ""
+echo "Add SSH user"
+read -p 'Username: ' usern
+read -p 'Password: ' passw
+read -p 'Expire  : ' exp
+echo ""
+
+chkusr=$(grep $usern /etc/passwd)
+
+if [ "$chkusr" = "" ]; then
+	expd=$(date '+%Y-%m-%d' -d "now + $exp days")
+	useradd --expiredate=$expd $usern 
+	echo -e "$passw\n$passw" | passwd $usern >  /dev/null 2>&1
+	expusr=$(chage -l $usern | grep Account | awk {'print $4 " " $5 " " $6'})
+	clear
+	echo "SSH Config"
+	echo "============================="
+	echo ""
+	echo "SSH Server: $ip"
+	echo "SSH Port: 443"
+	echo "Username: $usern"
+	echo "Password: $passw"
+	echo ""
+	echo "Expire  : $expusr [$exp] "
+	echo ""
+	echo "============================="
+	echo ""
+else
+	clear	
+	echo ""
+	echo "User $usern already exist."
+	echo ""
+	sleep 2
+	newuser
+fi
