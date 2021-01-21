@@ -19,6 +19,7 @@ if [ "$chkusr" = "" ]; then
 	useradd --expiredate=$expd $usern 
 	echo -e "$passw\n$passw" | passwd $usern >  /dev/null 2>&1
 	expusr=$(chage -l $usern | grep Account | awk {'print $4 " " $5 " " $6'})
+	usermod -a -G sshtunn $usern
 	clear
 	echo "SSH Config"
 	echo "============================="
