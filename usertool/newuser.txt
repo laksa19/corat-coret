@@ -4,6 +4,7 @@ if [[ $USER != "root" ]]; then
 	echo "Please run as root!"
 	exit
 fi
+
 ip=$(ip addr | grep -A 1 "eth0" | awk '/inet/{split($2,ip,"/"); print ip[1]}')
 echo ""
 echo "Add SSH user"
@@ -15,6 +16,7 @@ echo ""
 chkusr=$(grep $usern /etc/passwd)
 
 if [ "$chkusr" = "" ]; then
+	groupadd -f sshtunn 
 	expd=$(date '+%Y-%m-%d' -d "now + $exp days")
 	useradd --expiredate=$expd $usern 
 	echo -e "$passw\n$passw" | passwd $usern >  /dev/null 2>&1
