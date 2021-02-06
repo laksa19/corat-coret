@@ -1,7 +1,9 @@
 #!/bin/bash
 
+#buat file crudbash copy seluruh isi file dan paste di file crudbash
+#kemudian chmod +x crudbash
 
-file="/root/hola.txt"
+file="/root/crud-bash.txt"
 
 clear
 echo "menu:"
@@ -29,7 +31,7 @@ read -p "port:" port;
 if [ "$name" = "cc" ] | [ "$port" = "cc" ]; then
 
 clear
-./remline #panggil script
+./crudbash #panggil script
 
 else
 
@@ -43,7 +45,7 @@ cat -n hola.txt
 
 #back menu
 read -n1 -r -p "back " key
-./remline #panggil script
+./crudbash #panggil script
 
 ##
 ;;
@@ -61,7 +63,7 @@ echo "$name|$port" >>  $file
 echo ""
 cat -n $file
 read -n1 -r -p "back " key
-./remline
+./crudbash
 ;;
 
 3)
@@ -78,13 +80,13 @@ sed -i "/$name/d" $file
 
 cat -n $file
 read -n1 -r -p "back " key
-./remline
+./crudbash
 ;;
 
 4)
 cat -n $file
 read -n1 -r -p "back " key
-./remline
+./crudbash
 ;;
 
 
@@ -94,5 +96,5 @@ exit
 
 *)
 claer
-./remline
+./crudbash
 esac
