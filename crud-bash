@@ -1,0 +1,98 @@
+#!/bin/bash
+
+
+file="/root/hola.txt"
+
+clear
+echo "menu:"
+echo "[1] new"
+echo "[2] edit"
+echo "[3] delete"
+echo "[4] list"
+echo "[0] exit"
+
+
+
+read -p "num: " run;
+
+case $run in
+
+1)
+clear
+echo "new"
+echo ""
+read -p "nama:" name;
+read -p "port:" port;
+
+#pembatalan
+
+if [ "$name" = "cc" ] | [ "$port" = "cc" ]; then
+
+clear
+./remline #panggil script
+
+else
+
+echo "$name|$port" >> $file
+
+fi
+##
+
+
+cat -n hola.txt
+
+#back menu
+read -n1 -r -p "back " key
+./remline #panggil script
+
+##
+;;
+
+2)
+clear
+echo "edit"
+cat -n $file
+echo ""
+read -p "nama:" name;
+read -p "port:" port;
+
+sed -i "/$name/d" $file
+echo "$name|$port" >>  $file
+echo ""
+cat -n $file
+read -n1 -r -p "back " key
+./remline
+;;
+
+3)
+
+clear
+echo "delete"
+cat -n $file
+echo ""
+read -p "nama:" name;
+
+
+sed -i "/$name/d" $file
+
+
+cat -n $file
+read -n1 -r -p "back " key
+./remline
+;;
+
+4)
+cat -n $file
+read -n1 -r -p "back " key
+./remline
+;;
+
+
+0)
+exit
+;;
+
+*)
+claer
+./remline
+esac
