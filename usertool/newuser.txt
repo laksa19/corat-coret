@@ -15,26 +15,41 @@ echo ""
 
 chkusr=$(grep $usern /etc/passwd)
 
+
 if [ "$chkusr" = "" ]; then
-	groupadd -f sshtunn 
-	expd=$(date '+%Y-%m-%d' -d "now + $exp days")
-	useradd --expiredate=$expd $usern 
-	echo -e "$passw\n$passw" | passwd $usern >  /dev/null 2>&1
-	expusr=$(chage -l $usern | grep Account | awk {'print $4 " " $5 " " $6'})
-	usermod -a -G sshtunn $usern
-	clear
-	echo "SSH Config"
-	echo "============================="
-	echo ""
-	echo "SSH Server: $ip"
-	echo "SSH Port: 443"
-	echo "Username: $usern"
-	echo "Password: $passw"
-	echo ""
-	echo "Expire  : $expusr [$exp] "
-	echo ""
-	echo "============================="
-	echo ""
+	if [ $exp = "0" ]; then 
+		useradd $usern -G sshtunn
+		echo -e "$passw\n$passw" | passwd $usern >  /dev/null 2>&1
+		clear
+		echo "SSH Config"
+		echo "============================="
+		echo ""
+		echo "SSH Server: $ip"
+		echo "SSH Port: 443"
+		echo "Username: $usern"
+		echo "Password: $passw"
+		echo ""
+		echo "============================="
+		echo ""
+	else
+		expd=$(date '+%Y-%m-%d' -d "now + $exp days")
+		useradd --expiredate=$expd $usern -G sshtunn 
+		echo -e "$passw\n$passw" | passwd $usern >  /dev/null 2>&1
+		expusr=$(chage -l $usern | grep Account | awk {'print $4 " " $5 " " $6'})
+		clear
+		echo "SSH Config"
+		echo "============================="
+		echo ""
+		echo "SSH Server: $ip"
+		echo "SSH Port: 443"
+		echo "Username: $usern"
+		echo "Password: $passw"
+		echo ""
+		echo "Expire  : $expusr [$exp] "
+		echo ""
+		echo "============================="
+		echo ""	
+	fi	
 else
 	clear	
 	echo ""
