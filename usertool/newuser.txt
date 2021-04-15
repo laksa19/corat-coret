@@ -4,7 +4,7 @@ if [[ $USER != "root" ]]; then
 	echo "Please run as root!"
 	exit
 fi
-
+[ $(getent group sshtunn) ] || groupadd sshtunn  >  /dev/null 2>&1
 ip=$(ip addr | grep -A 1 "eth0" | awk '/inet/{split($2,ip,"/"); print ip[1]}')
 echo ""
 echo "Add SSH user"
