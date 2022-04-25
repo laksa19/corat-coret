@@ -23,7 +23,7 @@
 # voucher code
 :local comment "vc-$profile";
 # count user
-:local countVoucher [/ip hotspot user print count-only where comment~"$comment" ];
+:local countVoucher [/ip hotspot user print count-only where comment="$comment" ];
 :local tot (:tonum $countVoucher);
 #gen user
 :if ($tot<2) do={
@@ -34,4 +34,14 @@
         :local id [$rand s=$ss];
         /ip hotspot user add name=$id password=$id profile="$profile" comment="$comment";
     }
+}
+
+
+
+
+# profile
+:local profile "Free";
+:foreach i in [ /ip hotspot user find where comment~"vc-$profile" ] do={
+:local user [ /ip hotspot user get $i name]; 
+:put $user;
 }
