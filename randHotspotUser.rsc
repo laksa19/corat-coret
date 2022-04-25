@@ -15,12 +15,13 @@
     :return "$a$b$c$d$e$f";
 }
 
-# user profile
-:local profile "Free";
-# voucher code
-:local comment "vc-$profile";
 # total gen
 :local totGen 5;
+# user profile
+:local profile "Free";
+
+# voucher code
+:local comment "vc-$profile";
 # count user
 :local countVoucher [/ip hotspot user print count-only where comment~"$comment" ];
 :local tot (:tonum $countVoucher);
