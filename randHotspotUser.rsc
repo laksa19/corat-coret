@@ -21,9 +21,9 @@
 :local profile "Free";
 
 # voucher code
-:local comment "vc-$profile";
+:local comt "vc-$profile";
 # count user
-:local countVoucher [/ip hotspot user print count-only where comment="$comment" ];
+:local countVoucher [/ip hotspot user print count-only where comment="$comt" ];
 :local tot (:tonum $countVoucher);
 #gen user
 :if ($tot<2) do={
@@ -32,6 +32,6 @@
         :local getTime [/sys clock get time];
         :local ss (:tonum [:pic $getTime 6 8]);
         :local id [$rand s=$ss];
-        /ip hotspot user add name=$id password=$id profile="$profile" comment="$comment";
+        /ip hotspot user add name=$id password=$id profile="$profile" comment="$comt";
     }
 }
