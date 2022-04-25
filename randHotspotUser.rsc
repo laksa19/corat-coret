@@ -35,13 +35,3 @@
         /ip hotspot user add name=$id password=$id profile="$profile" comment="$comment";
     }
 }
-
-
-
-
-# profile
-:local profile "Free";
-:foreach i in [ /ip hotspot user find where comment~"vc-$profile" ] do={
-:local user [ /ip hotspot user get $i name]; 
-:put $user;
-}
